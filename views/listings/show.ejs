@@ -1,0 +1,123 @@
+<% layout('layouts/boilerplate.ejs') -%>
+    <div class="show mb-3 mt-2">
+    <h1 class="title"><%= listing.title %></h1>
+    <img src="<%= listing.image.url %>" alt="<%= listing.title %>">
+    <h5 class="name">Owned By <i>@<%= listing.owner.username %></i></h5>
+    <p><%= listing.description %></p>
+    <p>Rs. <%= listing.price.toLocaleString('en-IN') %></p>
+    <p><%= listing.location.place %>, <%= listing.country %></p>
+    <!-- <img src="<%= listing.image %>" alt="<%= listing.title %>"> -->
+     <div class="show-btns">
+    <% if(currentUser && currentUser._id.equals(listing.owner._id)) { %>
+        <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn">Edit</a>
+        <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST" class="d-inline">
+            <button class="btn btn-outline-danger delete-btn">Delete</button>
+        </form>
+    <% } %>
+     </div>
+   <hr>
+   
+     <div class="col-8 offset-2 mb-3">
+      <% if(currentUser){ %>
+     <h4>Leave a Review</h4>
+     <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="mb-3 needs-validation">
+    
+     <div class="mb-3 mt-3">
+      <label for="rating" class="form-label">Rating</label>
+     <fieldset class="starability-slot">
+  <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+  <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+  <label for="first-rate1" title="Terrible">1 star</label>
+  <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+  <label for="first-rate2" title="Not good">2 stars</label>
+  <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+  <label for="first-rate3" title="Average">3 stars</label>
+  <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+  <label for="first-rate4" title="Very good">4 stars</label>
+  <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+  <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset>
+</div>
+
+       <div class="mb-3 mt-3">
+         <label for="comment" class="form-label">Comment</label>
+         <textarea id="comment" name="review[comment]" class="form-control" rows="5" cols="50" placeholder="Write your review here..." required></textarea>
+      <div class="invalid-feedback">Please enter a comment.</div>
+      </div>
+
+         <button class="btn btn-outline-dark">Submit</button>
+
+     </form>
+     <% } %>
+     <hr>
+
+     <p><b>All Reviews</b></p>
+<% if(listing.reviews.length === 0) { %>
+       <h4>No reviews yet!</h4>
+       <% } %>
+
+       <% if(listing.reviews.length > 0) { %>
+      <div class="row">
+      <% for(let review of listing.reviews) { %>
+          <div class="card col-5 mb-3 ms-3">
+            <div class="card-body">
+              <h5 class="card-title">@<%= review.author.username %></h5>
+               <p class="starability-result" data-rating="<%= review.rating %>"></p>
+              <p class="card-text review"><%= review.comment %></p>
+              <p class="card-text review review-rating"><%= review.rating %> / 5</p>
+          
+              <% if(currentUser && currentUser._id.equals(review.author._id)) { %>
+                <form class="mb-2" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+              </form>
+              <% } %>
+            </div>
+          </div>
+
+       <% } %>
+       </div>
+       <% } %>
+
+       <div>
+       <h3>Where you'll be</h3>
+       <div id="map" style="height:400px"
+         <% if(listing.location && Array.isArray(listing.location.coordinates) && listing.location.coordinates.length === 2) { %>
+           data-lat="<%= listing.location.coordinates[1] %>"
+           data-lng="<%= listing.location.coordinates[0] %>"
+           data-popup='<%= JSON.stringify({ title: listing.title, place: listing.location.place || '' }) %>'
+         <% } %>
+       ></div>
+       </div>
+
+<% /* Leaflet scripts - initialize map if coordinates exist */ %>
+<% if(listing.location && Array.isArray(listing.location.coordinates) && listing.location.coordinates.length === 2) { %>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    (function(){
+      const mapEl = document.getElementById('map');
+      const lat = parseFloat(mapEl.getAttribute('data-lat'));
+      const lng = parseFloat(mapEl.getAttribute('data-lng'));
+      const popupData = JSON.parse(mapEl.getAttribute('data-popup'));
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+      const coords = [lat, lng];
+      const map = L.map('map').setView(coords, 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      const marker = L.marker(coords).addTo(map);
+      const safeTitle = popupData.title || '';
+      const safePlace = popupData.place || '';
+      const popupText = `<b>${safeTitle}</b><br>${safePlace}`;
+      marker.bindPopup(popupText).openPopup();
+    })();
+  </script>
+<% } else { %>
+  <p>No location data available to display a map.</p>
+<% } %>
+
+     </div>
+
+        
+     </div>

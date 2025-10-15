@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex: 1;
+}
+
+.navbar{
+    height: 5rem;
+    background: #ebebeb;
+}
+.fa-compass{
+    font-size: 2rem;
+    color: #fe424d;
+}
+.nav-link{
+    color: #222222 !important;
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+
+.f-info-links{
+    width: 100%;
+    text-align: center;
+}
+.f-info-socials{
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.f-info-socials i{
+    margin: 1rem;
+}
+.f-info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+    height: 8rem;
+    background: #ebebeb;
+}
+
+.listing-card{
+    border: none !important;
+    margin-bottom:  2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body{
+    position: relative !important;
+    padding: 0 !important;
+    text-align: justify;
+}
+
+.card-text{
+    font-weight: 400;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.listing-card{
+    text-decoration: none;
+}
+.card-img-overlay{
+opacity: 0;
+}
+.card-img-overlay:hover{
+opacity: 0.2;
+}
+
+.add-btn, .edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+.delete-btn{
+    background-color: #222222 !important;
+    border: none !important;
+    color: white !important;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.navbar-nav{
+    background: #ebebeb;
+}
+
+.show{
+    position: relative;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.show img{
+    width: 50%;
+    height: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.show h1, .show p{
+    width: 643px;
+    text-align: start;
+}
+.show .title{
+    font-weight: bold !important;
+    font-size: 2rem !important;
+    margin-bottom: 10px;
+}
+.show p{
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+.show .show-btns{
+    width: 643px;
+    display: flex;
+    gap: 10px;
+}
+.review{
+    width: 100% !important;
+    text-align: justify !important;
+}
+.show .name{
+    width: 643px;
+    text-align: start;
+    color: #555;
+}

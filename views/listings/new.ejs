@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate') -%>
+<div class="row">
+
+    <div class="col-8 offset-2">
+        <br>
+    <h3>Create New Listing</h3>
+
+    <form action="/listings" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" id="title" class="form-control" placeholder="Enter title" name="listing[title]" required><br>
+        <div class="valid-feedback">Title looks good!</div>    
+    </div>
+
+        <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea id="description" class="form-control" placeholder="Enter description" name="listing[description]" required></textarea><br>
+        <div class="valid-feedback">Description looks good!</div>
+    </div>
+
+        <div class="mb-3">
+        <label for="location" class="form-label">Location:</label>
+        <input type="text" id="location" class="form-control" placeholder="Enter location" name="listing[location]" required><br>
+          <div class="invalid-feedback">Please provide a location.</div>    
+    </div>
+
+<div class="row">
+    
+        <div class="mb-3 col-md-8">
+        <label for="country" class="form-label">Country:</label>
+        <input type="text" id="country" class="form-control" placeholder="Enter country" name="listing[country]" required><br>
+          <div class="invalid-feedback">Please provide a country.</div>   
+    </div>
+
+        <div class="mb-3 col-md-4">
+        <label for="price" class="form-label">Price (in Rs.):</label>
+        <input type="number" id="price" class="form-control" placeholder="Enter price" name="listing[price]" required><br>
+        <div class="invalid-feedback">Please enter a valid price.</div>
+    </div>
+
+</div>
+        <div class="mb-3">
+        <label for="image" class="form-label">Upload Image:</label>
+        <input type="file" id="image" class="form-control" name="listing[image]" required><br>
+        </div>
+
+        <button class="btn btn-dark add-btn" type="submit">Add</button>
+        <br><br>
+
+    </form>
+    </div>
+</div>
