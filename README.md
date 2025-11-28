@@ -1,85 +1,116 @@
-#🏨 WanderLust – Hotel & Place Booking App
+# 🏨 StayFinder – Hotel & Place Booking App
 
-A full-stack booking platform built using EJS, Node.js, Express, MongoDB, and Cloudinary.
+A full-stack booking platform built using **EJS, Node.js, Express, MongoDB, and Cloudinary**.  
 Authenticated users can create and manage listings with image uploads, while visitors can browse and book places or hotels.
 
-##🚀 Features
-🔐 Authentication
+---
 
-User registration and login
+## 🚀 Features
 
-Secure password hashing
+### 🔐 Authentication
+- User registration and login  
+- Secure password hashing  
+- Only authenticated users can:
+  - Add new listings  
+  - Edit or delete their own listings  
+  - Write and delete their own reviews  
 
-Only authenticated users can:
+---
 
-Add new listings
+### 🏨 Listings Management
+- Create listings with:
+  - Title  
+  - Description  
+  - Price  
+  - Location  
+  - Image upload (stored on Cloudinary)
+- Edit and delete listings  
+- View detailed listing pages with images, reviews, and booking options  
 
-Edit or delete their own listings
+---
 
-Write and delete their own reviews
+### 💬 Reviews System
+- Authenticated users can post reviews  
+- Users can delete their own reviews  
+- Ratings displayed on listing pages  
 
-##🏨 Listings Management
+---
 
-Create listings with:
+### 📅 Booking System
+- Visitors can browse all listings  
+- Users can book hotels/places  
+- Booking data saved in MongoDB  
 
-Title
+---
 
-Description
+### ☁️ Image Upload
+- Images uploaded using **multer** and stored in **Cloudinary**  
+- Cloud-based optimized image delivery  
 
-Price
+---
 
-Location
+## 🛠️ Tech Stack
 
-Image upload (stored on Cloudinary)
+**Frontend:**  
+- EJS Templates  
+- CSS / Bootstrap
 
-Edit and delete listings
+**Backend:**  
+- Node.js  
+- Express.js  
+- Mongoose  
+- Passport.js (for authentication)
 
-View detailed listing pages with images, reviews, and booking options
+**Database:**  
+- MongoDB (Atlas or local)
 
-##💬 Reviews System
+**Storage:**  
+- Cloudinary (Image hosting)
 
-Authenticated users can post reviews
+---
 
-Users can delete their own reviews
+## ⚙️ Environment Variables
 
-Ratings displayed on listing pages
+Create a `.env` file and include:
 
-📅 Booking System
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_KEY=your_api_key
+CLOUDINARY_SECRET=your_api_secret
 
-Visitors can browse all listings
+MONGO_URL=your_mongodb_connection_string
+SESSION_SECRET=your_secret
 
-Users can book hotels/places
+---
 
-Booking data saved in MongoDB
+## ▶️ Run Locally
 
-##☁️ Image Upload
+1. Clone the repo:
 
-Images uploaded using multer and stored in Cloudinary
+```bash
+git clone https://github.com/DevendraNathLimbu/wanderlust.git
+```
 
-Cloud-based optimized image delivery
+2. Install dependencies:
 
-##🛠️ Tech Stack
+npm install
 
-Frontend:
+3. Add `.env` file with your credentials.
 
-EJS Templates
+4. Start the server:
 
-CSS / Bootstrap
+node app.js
+# or
+npm start
 
-Backend:
+## ⭐ Future Improvements
+- Online payment integration  
+- Google Maps location  
+- Email alerts for bookings  
+- User profiles  
+- More advanced booking system  
 
-Node.js
+---
 
-Express.js
-
-Mongoose
-
-Passport.js (for authentication)
-
-Database:
-
-MongoDB (Atlas or local)
-
-Storage:
-
-Cloudinary (Image hosting)
+## 🤝 Contributing
+Contributions are welcome!  
+Feel free to fork, open issues, or submit pull requests.
